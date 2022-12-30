@@ -1,0 +1,195 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.column {
+  flex: 50%;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: greenyellow;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.home {
+  background-color: white;
+
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.match {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  height: 15%;
+  width: 80%;
+  background-color: greenyellow;
+  color: black;
+  margin: 15px;
+  padding: 5px;
+}
+
+.match-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #282c34;
+  margin: 0 auto;
+  padding: 50;
+}
+
+.navbar .h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  color: greenyellow;
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  height: 60px;
+  background-color: #282c34;
+  color: white;
+  margin: 0 auto;
+}
+
+.navbar .links{
+  margin-left: auto;
+}
+
+.navbar .link{
+  color: greenyellow;
+  text-decoration: none;
+  padding: 0 15px;
+}
+
+.personal-details {
+  display: flex;
+  padding: 50px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #282c34;
+  color: white;
+  margin: 0 auto;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+  color: white;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.profile-form-container {
+  max-width: 50%;
+  height: 100%;
+  padding-left: 15px;
+}
+
+.profile-form-container input[type=text]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+}
+
+.profile-form-container input[type=text]:focus {
+  outline: none;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  height: 100%;
+  width: 50%;
+  background-color: #282c34;
+  color: white;
+  margin: 0 auto;
+  padding-left: 100px;
+  padding-bottom: 50px;
+}
+
+.profile-image-container img {
+  width: 80%;
+  height: 20%;
+  object-fit: scale-down;
+}
+
+.row {
+  display: flex;
+}
+
+.signin-form {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+  /* border: 3px solid #f1f1f1; */
+  background-color: #282c34;
+  /* z-index: 9; */
+}

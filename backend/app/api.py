@@ -19,7 +19,7 @@ app.add_middleware(
 
 app.include_router(auth.router, tags=['Auth'], prefix='/api/auth')
 app.include_router(user.router, tags=['Users'], prefix='/api/users')
-app.include_router(spotify.router, tags=["spotify"])
+app.include_router(spotify.router, tags=["Spotify"], prefix="/api/spotify")
 
 @app.get("/", tags=["root"])
 async def test() -> dict:

@@ -13,8 +13,10 @@ class Settings(BaseSettings):
 
     CLIENT_ORIGIN: str
 
-    spotify_client_id: str
-    spotify_client_secret: str
+    SPOTIFY_CLIENT_ID: str
+    SPOTIFY_CLIENT_SECRET: str
+    SPOTIFY_REDIRECT_URI: str
+    SPOTIFY_SCOPE: str
 
     class Config:
         env_file = './.env'

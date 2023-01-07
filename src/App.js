@@ -4,6 +4,7 @@ import Match from './Match';
 import Profile from './Profile';
 import SignIn from './SigninForm';
 import Match_profile from './Match_profile';
+import Notfound from './Notfound';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/Home">
               <Home />
             </Route>
             <Route exact path="/Match">
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route exact path="/Match_profile/:username/:id">
               <Match_profile />
+            </Route>
+            <Route path="*">
+              <Notfound />
             </Route>
           </Switch>
         </div>

@@ -28,9 +28,13 @@ code {
 }
 
 .form-container {
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
   padding: 10px;
   background-color: white;
+  margin: 0 auto;
+  border-radius: 25px;
 }
 
 .form-container input[type=text], .form-container input[type=password] {
@@ -49,11 +53,13 @@ code {
 .form-container .btn {
   background-color: greenyellow;
   color: white;
-  padding: 16px 20px;
+  padding: 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-bottom:10px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
   opacity: 0.8;
 }
 

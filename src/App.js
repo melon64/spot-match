@@ -3,6 +3,7 @@ import Home from './Home';
 import Match from './Match';
 import Profile from './Profile';
 import SignIn from './SigninForm';
+import Match_profile from './Match_profile';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route exact path="/SignIn">
               <SignIn />
+            </Route>
+            <Route exact path="/Match_profile/:username/:id">
+              <Match_profile />
             </Route>
           </Switch>
         </div>

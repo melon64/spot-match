@@ -4,10 +4,10 @@ const SignIn = () => {
             <form action="" className="form-container">
                 <h2>Login</h2>
 
-                <label htmlfor="email"><b>Email</b></label>
+                <label htmlFor="email"><b>Email</b></label>
                 <input htmltype="text" htmlplaceholder="Enter Email" htmlname="email" htmlrequired/>
 
-                <label htmlfor="psw"><b>Password</b></label>
+                <label htmlFor="psw"><b>Password</b></label>
                 <input htmltype="password" htmlplaceholder="Enter Password" htmlname="psw" htmlrequired/>
 
                 <button htmltype="submit" className="btn">Login</button>

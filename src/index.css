@@ -16,6 +16,17 @@ code {
   flex: 50%;
 }
 
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  margin: 0 auto;
+}
+
 .form-container {
   max-width: 300px;
   padding: 10px;
@@ -79,11 +90,47 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 150vh;
   width: 100%;
   background-color: #282c34;
   margin: 0 auto;
   padding: 50;
+}
+
+.match-pfp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+  background-color: transparent;
+  margin: 0 auto;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 25px;
+}
+
+.match-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #282c34;
+  margin: 0 auto;
+}
+
+.match-profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #282c34;
+  margin: 0 auto;
 }
 
 .navbar .h1 {
@@ -117,6 +164,7 @@ img {
 .personal-details {
   display: flex;
   padding: 50px;
+  text-decoration: none;
 }
 
 .profile {
@@ -133,24 +181,24 @@ img {
 .profile-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  height: 100vh;
+  align-items: top;
+  justify-content: center;
+  height: 100%;
   background-color: #282c34;
   color: white;
   margin: 0 auto;
-  padding: 0;
+  padding: 100px;
 }
 
 .profile-form-container {
-  max-width: 50%;
-  height: 100%;
+  width: 100%;
   padding-left: 15px;
 }
 
 .profile-form-container input[type=text]{
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 10px 0 25px 0;
   border: none;
 }
 
@@ -159,23 +207,20 @@ img {
 }
 
 .profile-image-container {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
-  height: 100%;
-  width: 50%;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
   background-color: #282c34;
   color: white;
   margin: 0 auto;
   padding-left: 100px;
-  padding-bottom: 50px;
 }
 
 .profile-image-container img {
-  width: 80%;
-  height: 20%;
-  object-fit: scale-down;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .row {

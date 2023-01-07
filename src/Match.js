@@ -1,22 +1,14 @@
-import { useState } from 'react';
-import person from './imgs/person.jpg';
+import { useState, useEffect } from 'react';
+import Matches from './matches';
+import useFetch from './useFetch';
 
 const Match = () => {
-    const [match, setmatch] = useState([
-        { name: "Jane Doe", age: 21, gender:"Female", image: <img src={person} />, id:1},
-        { name: "Mary Jane", age: 22, gender: "Female", image: <img src={person} />, id:2}
-    ]);
-
+    const {data, isLoading, error} = useFetch('http://localhost:8000/matches');
     return (
         <div className="match-container">
-            {match.map((match) => (
-            <div className="match" key={match.id}>
-                {match.image}
-                <h2 className="personal-details">{match.name}</h2>
-                <p className="personal-details">Age: {match.age}</p>
-                <p className="personal-details">Gender: {match.gender}</p>
-            </div>
-        ))}
+            {error && <div>{error}</div>}
+            {isLoading && <div color="white">Loading...</div>}
+            {data && <Matches matches={data} />}
         </div>
     );
 }

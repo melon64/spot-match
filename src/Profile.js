@@ -1,4 +1,4 @@
-import person from './imgs/person.jpg';
+import person from './imgs/person3.jpg';
 
 const Profile = () => {
     return ( 

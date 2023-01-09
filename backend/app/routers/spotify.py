@@ -1,5 +1,10 @@
 from pydantic import BaseModel
+from typing import Optional
 from fastapi import APIRouter, Header, Depends, HTTPException
+from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+from fastapi.security.utils import get_authorization_scheme_param
+from fastapi import Cookie, Response, Request
 from app import config
 from app.config import settings
 
@@ -27,11 +32,11 @@ def spotify_login():
         show_dialog=True
     )
     auth_url = sp_oauth.get_authorize_url()
-    return {"status": "success", "auth_url": auth_url}
+    return RedirectResponse(url=auth_url)
 
 #spotify callback endpoint to get the access and refresh token
 @router.get("/callback")
-def spotify_callback(code: str):
+def spotify_callback(code: str, request: Request):
     sp_oauth = SpotifyOAuth(
         client_id=settings.SPOTIFY_CLIENT_ID,
         client_secret=settings.SPOTIFY_CLIENT_SECRET,
@@ -39,8 +44,13 @@ def spotify_callback(code: str):
         scope=settings.SPOTIFY_SCOPE,
         show_dialog=True
     )
+    try:
+        del request.session["access_token"]
+    except:
+        pass
     token_info = sp_oauth.get_access_token(code)
-    return token_info
+    request.session["access_token"] = token_info
+    return RedirectResponse(url="/api/spotify/favorite-genres")
 
 #refresh the access token
 @router.get("/refresh")
@@ -55,26 +65,36 @@ def spotify_refresh_token(refresh_token: str):
     token_info = sp_oauth.refresh_access_token(refresh_token)
     return token_info
 
-#find user's top artists
-@router.get("/top-artists")
-def spotify_top_artists(access_token: str):
-    sp = spotipy.Spotify(auth=access_token)
-    results = sp.current_user_top_artists(limit=50, time_range='short_term')
-    return results
-
-#find user's top tracks
-@router.get("/top-tracks")
-def spotify_top_tracks(access_token: str):
-    sp = spotipy.Spotify(auth=access_token)
-    results = sp.current_user_top_tracks(limit=50, time_range='short_term')
-    return results
-
 #find user's favorite genres
 @router.get("/favorite-genres")
-def spotify_favorite_genres(access_token: str):
-    sp = spotipy.Spotify(auth=access_token)
-    results = sp.current_user_top_artists(limit=50, time_range='short_term')
-    genres = []
-    for item in results['items']:
-        genres.extend(item['genres'])
-    return genres
+def spotify_favorite_genres():
+    access_token, authorized = get_access_token()
+    if authorized:
+        sp = spotipy.Spotify(auth=access_token)
+        results = sp.current_user_top_artists(limit=50, time_range='short_term')
+        genres = []
+        for item in results['items']:
+            genres.extend(item['genres'])
+        return genres
+    else:
+        return {"error": "Token info not found in cookie"}
+
+#find user's most played song
+@router.get("/most-played")
+def spotify_most_played():
+    access_token, authorized = get_access_token()
+    if authorized:
+        sp = spotipy.Spotify(auth=access_token)
+        results = sp.current_user_top_tracks(limit=10, time_range='short_term')
+        return results
+    else:
+        return {"error": "Token info not found in cookie"}
+
+
+async def get_access_token(request: Request):
+    access_token = None
+    authorized = False
+    if "access_token" in request.session:
+        access_token = request.session["access_token"]
+        authorized = True
+    return access_token, authorized

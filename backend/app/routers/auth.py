@@ -4,7 +4,7 @@ from fastapi import APIRouter, Response, status, Depends, HTTPException
 
 from app import oauth2
 from app.database import User
-from app.serializers.userSerializers import userEntity
+from app.serializers.userSerializers import userEntity, userResponseEntity
 from .. import schemas, utils
 from app.oauth2 import AuthJWT
 from ..config import settings
@@ -28,6 +28,8 @@ async def create_user(payload: schemas.CreateUserSchema):
     payload.password = utils.hash_password(payload.password)
     del payload.passwordConfirm
     payload.role = 'user'
+    payload.gender = payload.gender
+    payload.playlist = {}
     payload.verified = True
     payload.email = payload.email.lower()
     payload.created_at = datetime.utcnow()

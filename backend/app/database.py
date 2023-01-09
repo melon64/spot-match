@@ -15,5 +15,5 @@ db = client[settings.MONGO_INITDB_DATABASE]
 User = db.users
 User.create_index([("email", pymongo.ASCENDING)], unique=True)
 
-Spotify = db.spotify
-Spotify.create_index([("id", pymongo.ASCENDING)], unique=True)
+#Spotify = db.spotify
+#Spotify.create_index([("id", pymongo.ASCENDING)], unique=True)

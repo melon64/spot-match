@@ -7,6 +7,8 @@ class UserBaseSchema(BaseModel):
     email: str
     photo: str
     role: str | None = None
+    playlist: list[str] | None = None
+    gender: str | None = None
     created_at: datetime | None = None
     updated_at: datetime | None = None
 
@@ -33,4 +35,9 @@ class UserResponseSchema(UserBaseSchema):
 class UserResponse(BaseModel):
     status: str
     user: UserResponseSchema
+
+class UserListResponse(BaseModel):
+    status: str
+    users: list[UserResponseSchema]
+
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        InSync: My Matches
+    </title>
+    <link rel="stylesheet" href="styling.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@100&family=Water+Brush&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: rgb(37, 37, 37)">
+    <nav class="navbar">
+        <div class="links">
+            <a class="h1" href="Mainpage.html">InSync</a>
+            <a class="link" href="signin.html">Sign In</a>
+            <a class="link" href="profile.html">Profile</a>
+            <a class="link" href="matches.html">Match</a>
+        </div>
+    </nav>
+
+    <p class="header">
+        My Matches
+    </p>
+    <div class="matchcont">
+        <div class="match" key={matches.id}>
+            <div class="match-pfp">
+                <img src={matches.image} alt={matches.id} />
+            </div>
+            <a class="personal-details" href="/Match_profile/${matches.username}/${matches.id}"> View <br> Profile </a>
+            <p class="personal-details">Age:<br> {matches.age}</p>
+            <p class="personal-details">Gender:<br> {matches.gender}</p>
+            <p class="personal-details">{matches.name}</p>
+        </div>
+        ))}
+    </div>
+
+</body>

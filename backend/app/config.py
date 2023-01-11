@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     SPOTIFY_REDIRECT_URI: str
     SPOTIFY_SCOPE: str
 
+    SECRET_KEY: str
+
     class Config:
         env_file = './.env'
 

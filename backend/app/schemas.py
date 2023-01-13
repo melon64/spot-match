@@ -8,7 +8,9 @@ class UserBaseSchema(BaseModel):
     photo: str | None = None
     role: str | None = None
     playlist: list[dict] | None = None
+    age: int | None = None
     gender: str
+    sexuality: str | None = "hetereosexual"
     created_at: datetime | None = None
     updated_at: datetime | None = None
 

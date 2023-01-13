@@ -23,7 +23,6 @@ def userResponseEntity(user) -> dict:
         "photo": user["photo"],
         "playlist": user["playlist"],
         "gender": user["gender"],
-        "gender": user["gender"],
         "created_at": user["created_at"],
         "updated_at": user["updated_at"]
     }

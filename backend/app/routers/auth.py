@@ -29,7 +29,7 @@ async def create_user(payload: schemas.CreateUserSchema):
     del payload.passwordConfirm
     payload.role = 'user'
     payload.gender = payload.gender
-    payload.playlist = {}
+    payload.playlist = []
     payload.verified = True
     payload.email = payload.email.lower()
     payload.created_at = datetime.utcnow()

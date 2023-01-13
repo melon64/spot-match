@@ -8,6 +8,13 @@ from fastapi import Cookie, Response, Request
 from app import config
 from app.config import settings
 from starlette.middleware.sessions import SessionMiddleware
+from .. import schemas, oauth2
+
+from bson.objectid import ObjectId
+from app.serializers.userSerializers import userResponseEntity, userListEntity
+from app.database import User
+
+
 
 import time
 import spotipy
@@ -48,21 +55,36 @@ def spotify_callback(code: str, request: Request):
         show_dialog=True
     )
     token_info = sp_oauth.get_access_token(code)
-    #response.set_cookie(key = "access_token", value = token_info)
     request.session.clear()
     request.session["token_info"] = token_info
-    return RedirectResponse(url="/api/spotify/most-played")
+    return RedirectResponse(url="/api/spotify/top-tracks")
 
-#find user's most played song
-@router.get("/most-played")
-def spotify_most_played(request: Request):
+#find user's top tracks
+@router.get("/top-tracks", response_model=schemas.UserResponse)
+def spotify_top_tracks(request: Request, user_id: str = Depends(oauth2.require_user)):
     request.session["token_info"], authorized = get_token(request) 
     if authorized:
         sp = spotipy.Spotify(auth=request.session.get("token_info").get("access_token"))
-        results =  sp.current_user_saved_tracks(limit=50)['items']
-        return results
+        results =  sp.current_user_top_tracks(limit=10)['items']
+        parsed = []
+        for result in results:
+            result['genre'] = sp.artist(result['artists'][0]['id'])['genres']
+            for key in list(result.keys()):
+                if key != 'name' and key != 'artists' and key != 'uri' and key != 'genre':
+                    del result[key]
+                if key == 'artists':
+                    result['artist'] = result['artists'][0]['name']
+                    del result['artists']
+            parsed.append(result)
+        user = userResponseEntity(User.find_one({'_id': ObjectId(str(user_id))}))
+        user['playlist'] = parsed
+        User.update_one({'_id': ObjectId(str(user_id))}, {'$set': user})
+        return {"status": "success", "user": user}
+        #return RedirectResponse(url="/api/users/playlist", status_code=307)
+
     else:
-        return {"error": "Not Authorized"}
+        return {"error": "Not Authorized"}  
+
 
 def get_token(request: Request):
     token_valid = False

@@ -1,4 +1,3 @@
-import person from './imgs/person3.jpg';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 const Profile = () => {
@@ -36,14 +35,9 @@ const Profile = () => {
             
                     <label htmlFor="age" color="black">Age</label>
                     <input type="text" name="age" required value={age} onChange={(e) => setAge(e.target.value)}/>
-
-                    <p color="black">Gender</p>
                 
-                    <label htmlFor="gender" color="black">Male</label>
-                    <input type="radio" name="gender" value="Male" onClick={(e) => setGender(e.target.value)}/>
-
-                    <label htmlFor="gender" color="black">Female</label>
-                    <input type="radio" name="gender" value="Female" onClick={(e) => setGender(e.target.value)}/>
+                    <label htmlFor="gender" color="black">Gender</label>
+                    <input type="text" name="gender" required value={gender} onChange={(e) => setGender(e.target.value)}/>
 
                     {!isLoading && <button className="btn">Save</button>}
                     {isLoading && <button disabled className="btn">Saving Changes...</button>}
@@ -51,7 +45,7 @@ const Profile = () => {
 
                 <div className="profile-image-container">
                     <h2>Spotify User:</h2>
-                    <img src={person} alt="person"/>
+                    {/* <img src={person} alt="person"/> */}
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ const Matches = ({matches}) => {
             {matches.map((matches) => (
             <div className="match" key={matches.id}>
                 <div className="match-pfp">
-                    <img src={matches.image} alt={matches.id} />
+                    <img className="match-pfp-img" src={matches.image} alt={matches.id} />
                 </div>
                 <h2 className="personal-details">{matches.name}</h2>
                 <p className="personal-details">Age: {matches.age}</p>
